@@ -59,7 +59,7 @@ public class Adapter_Web {
         useCase_in_musics.add(musics_for_creation);
         return ResponseEntity.status(HttpStatus.CREATED).body("Music added successfully");
     }
-    @DeleteMapping("/musics")
+    @DeleteMapping("/musics/{id}")
     public ResponseEntity<String> deleteMusics(@Validated @RequestBody int id) {
         useCase_in_musics.removeById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Music deleted successfully");
