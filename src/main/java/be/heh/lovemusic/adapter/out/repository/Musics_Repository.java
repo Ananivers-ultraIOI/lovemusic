@@ -31,7 +31,8 @@ public class Musics_Repository {
     }
     public boolean verifyRepository(String title, String artist, String album) {
         String sql = "SELECT * FROM musics WHERE artist = ? AND album = ? AND title = ?";
-        if(jdbcTemplate.query(sql,new Musics_Row_Mapper(),artist,album,title)==null){
+        List<Musics> musicsList = jdbcTemplate.query(sql,new Musics_Row_Mapper(),artist,title,album);
+        if(musicsList.isEmpty()){
                 return false;
         }
         return true;
@@ -42,7 +43,8 @@ public class Musics_Repository {
     }
     public boolean verifyByIdRepository(int id) {
         String sql = "SELECT * FROM musics WHERE id = ?";
-        if(jdbcTemplate.query(sql,new Musics_Row_Mapper(),id)==null){
+        List<Musics> musicsList  = jdbcTemplate.query(sql,new Musics_Row_Mapper(),id);
+        if(musicsList.isEmpty()){
             return false;
         }
         return true;

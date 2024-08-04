@@ -31,14 +31,16 @@ public class Categories_Repository {
     }
     public boolean verifyRepository(String name) {
         String sql = "SELECT * FROM categories WHERE name = ?";
-        if(jdbcTemplate.query(sql,new Categories_Row_Mapper(),name)==null){
+        List<Categories> categoriesList=jdbcTemplate.query(sql,new Categories_Row_Mapper(),name);
+        if(categoriesList.isEmpty()){
             return false;
         }
         return true;
     }
     public boolean verifyByIdRepository(int id) {
         String sql = "SELECT * FROM categories WHERE id = ?";
-        if(jdbcTemplate.query(sql,new Categories_Row_Mapper(),id)==null){
+        List<Categories> categoriesList=jdbcTemplate.query(sql,new Categories_Row_Mapper(),id);
+        if(categoriesList.isEmpty()){
             return false;
         }
         return true;

@@ -15,6 +15,7 @@ public class Categories_Service implements UseCase_In_Categories {
     @Override
     public void add(Categories_For_Creation categories_for_creation) {
         boolean isCategoryExist=categories_out.verifyCategories(categories_for_creation.getName());
+        System.out.println(isCategoryExist);
         if(!isCategoryExist) {
             categories_out.addCategories(categories_for_creation);
         }

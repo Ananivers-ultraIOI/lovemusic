@@ -31,7 +31,7 @@ public class Adapter_Web {
         return categories != null ? ResponseEntity.ok(categories) : ResponseEntity.notFound().build();
     }
     @PostMapping("/categories")
-    public ResponseEntity<String> addCategories(@Validated @RequestBody Categories_For_Creation categories_for_creation) {
+    public ResponseEntity<String> addCategories(@RequestBody Categories_For_Creation categories_for_creation) {
         useCase_in_categories.add(categories_for_creation);
         return ResponseEntity.status(HttpStatus.CREATED).body("Category added successfully");
     }
