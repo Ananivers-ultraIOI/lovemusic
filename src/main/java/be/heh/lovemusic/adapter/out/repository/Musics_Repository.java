@@ -18,7 +18,7 @@ public class Musics_Repository {
         return jdbcTemplate.query(sql,new Musics_Row_Mapper());
     }
     public List<Musics> getMusicsByIdRepository(int id) {
-        String sql = "SELECT musics.* FROM musics WHERE id = ?";
+        String sql = "SELECT musics.* FROM musics WHERE musics.id = ?";
         return jdbcTemplate.query(sql,new Musics_Row_Mapper(),id);
     }
     public void addRepository(Musics_For_Creation musics_for_creation) {
@@ -37,9 +37,9 @@ public class Musics_Repository {
         }
         return true;
     }
-    public List<Musics> getMusicsByCategoriesIdRepository(int id) {
-        String sql = "SELECT musics FROM musics WHERE categoriesId = ?";
-        return jdbcTemplate.query(sql,new Musics_Row_Mapper(),id);
+    public List<Musics> getMusicsByCategoriesIdRepository(int categoriesId) {
+        String sql = "SELECT * FROM musics WHERE musics.categoriesid = ?";
+        return jdbcTemplate.query(sql,new Musics_Row_Mapper(),categoriesId);
     }
     public boolean verifyByIdRepository(int id) {
         String sql = "SELECT * FROM musics WHERE id = ?";

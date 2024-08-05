@@ -47,12 +47,11 @@ public class Adapter_Web {
     @GetMapping("/musics/{id}")
     public ResponseEntity<Musics> getMusicById(@PathVariable int id) {
         Musics musics = useCase_in_musics.getById(id).stream().findFirst().orElse(null);
-        return musics != null ?ResponseEntity.ok(musics) : ResponseEntity.notFound().build();
+        return musics != null ? ResponseEntity.ok(musics) : ResponseEntity.notFound().build();
     }
-    @GetMapping("/musics/{categoriesId}")
+    @GetMapping("/categories/musics/{categoriesId}")
     public ResponseEntity<List<Musics>> getMusicsByCategoriesId(@PathVariable int categoriesId) {
-        List<Musics> musics = (List<Musics>) useCase_in_musics.getByCategoryId(categoriesId).stream().findFirst().orElse(null);
-        return musics != null ?ResponseEntity.ok(musics) : ResponseEntity.notFound().build();
+        return ResponseEntity.ok(useCase_in_musics.getByCategoryId(categoriesId));
     }
     @PostMapping("/musics")
     public ResponseEntity<String> addMusics(@Validated @RequestBody Musics_For_Creation musics_for_creation) {
@@ -60,7 +59,7 @@ public class Adapter_Web {
         return ResponseEntity.status(HttpStatus.CREATED).body("Music added successfully");
     }
     @DeleteMapping("/musics/{id}")
-    public ResponseEntity<String> deleteMusics(@Validated @RequestBody int id) {
+    public ResponseEntity<String> deleteMusics(@PathVariable int id) {
         useCase_in_musics.removeById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Music deleted successfully");
     }
